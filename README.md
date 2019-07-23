@@ -1,7 +1,7 @@
 # Intro
 This is a proof of concept of creating an authorization system with OPA and JSONNET for LAKEFS.
 
-```
+```sh
 cd lake/jsonnet
 make
 ```
@@ -22,7 +22,7 @@ JSONNET is used to produce a flat data model for OPA (lake.json). The policy wri
 REGO is inspired by AWS IAM with principal, action and resource.
 
 # Requirements
-```
+```sh
 # install jsonnet
 # osx
 brew install jsonnet
