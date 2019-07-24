@@ -2,16 +2,18 @@ local utils = import 'utils.libsonnet';
 
 {
     groups:: {
-        confidential_access: [
+        # create insiders from all users programmatically
+        insiders: [
+            "user1",
+            "user2",
+            self.team1,
+            self.team2,
+        ],
+        team1: [
             "amiorin",
             "sverma"
         ],
-        insider_access: [
-            "team2/user1",
-            "team2/user2",
-            $.groups.team3
-        ],
-        team3: [
+        team2: [
             "team3/user1",
             "team3/user2"
         ],
@@ -19,20 +21,21 @@ local utils = import 'utils.libsonnet';
 
     tags:: {
         "sales": [
-            "hive.dwh.f_salesorder_position"
+            "hive.dwh.f_salesorder_position",
+            "hive.dwh.d_article_config",
         ]
     },
 
-    filter_columns:: [
+    insiders:: [
         {
-            table: "hive.dwh.f_salesorder_position",
+            resource: "hive.dwh.f_salesorder_position",
             columns: [
                 "colA",
                 "colB",
             ],
         },
         {
-            table: "hive.dwh.d_article_config",
+            resource: "hive.dwh.d_article_config",
             columns: [
                 "colD",
             ],
@@ -41,7 +44,7 @@ local utils = import 'utils.libsonnet';
 
     policies: [
         {
-            principal: utils.deepFlatten($.groups.confidential_access),
+            principal: utils.deepFlatten($.groups.team1),
             action: [
                 "select"
             ],
@@ -49,5 +52,12 @@ local utils = import 'utils.libsonnet';
         }
     ],
 
-    blacklists: utils.explode_filter_columns($.groups.insider_access, $.filter_columns)
+    insiders_group: utils.deepFlatten($.groups.insiders),
+    insiders_tables: $.insiders,
+    confidentials: [
+        {
+            principal: utils.deepFlatten($.groups.team1),
+            resource: utils.deepFlatten($.tags.sales)
+        },
+    ]
 }

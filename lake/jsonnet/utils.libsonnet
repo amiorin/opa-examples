@@ -12,12 +12,4 @@
 
     deepFlatten(arrs)::
         std.foldl($.f, arrs, []),
-
-    explode_filter_columns(users, tables)::
-        [{
-            principal: $.deepFlatten(users),
-            action: "filterColumns",
-            resource: x.table,
-            columns: x.columns
-        } for x in tables]
 }

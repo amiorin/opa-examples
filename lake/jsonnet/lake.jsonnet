@@ -5,12 +5,12 @@ local utils = import 'utils.libsonnet';
         team1: [
             "amiorin",
             "sverma",
-            $.groups.team2
+            self.team2
         ],
         team2: [
             "team2/user1",
             "team2/user2",
-            $.groups.team3
+            self.team3
         ],
         team3: [
             "team3/user1",
