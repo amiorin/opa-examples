@@ -1,5 +1,5 @@
 # Intro
-These are 2 POCs for LAKEFS and Presto.
+These are 3 POCs for LAKEFS and Presto. ```presto-gateway``` has his own README.
 
 # Cluster everything
 Instead of creating thousands of policies like "user can read table", we want
