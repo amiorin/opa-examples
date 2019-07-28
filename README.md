@@ -10,11 +10,11 @@ principal, action and resource.
 
 ```sh
 # first POC for LAKEFS
-cd lake/jsonnet
+cd lake
 make
 
 # second POC for Presto
-cd presto/jsonnet
+cd presto
 make
 ```
 
